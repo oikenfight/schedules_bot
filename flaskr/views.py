@@ -9,8 +9,12 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/get_schedules')
+@app.route('/get_schedules', )
 def get_schedules():
+    start_date = request.args.get('name')
+    finish_date = request.args.get('name')
+    name = request.args.get('name')
+    name = request.args.get('name')
     events = calendars.main()
     return jsonify(events)
 
