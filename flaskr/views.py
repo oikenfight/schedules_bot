@@ -76,7 +76,7 @@ def get_free_schedules():
             free_days_in_term.remove(event['start']['date'])
 
     print(free_days_in_term)
-    return jsonify(events)
+    return jsonify(free_days_in_term)
 
 
 @app.route('/add', methods=['POST'])
