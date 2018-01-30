@@ -13,6 +13,7 @@ import datetime
 SCOPES = config.SCOPES
 CLIENT_SECRET_FILE = config.CLIENT_SECRET_FILE
 APPLICATION_NAME = config.APPLICATION_NAME
+CALENDAR_ID = config.CALENDAR_ID
 API_KEY = config.API_KEY
 
 try:
@@ -54,7 +55,7 @@ def get_credentials():
     return credentials
 
 
-def main():
+def main(time_min, time_max):
     """Shows basic usage of the Google Calendar API.
 
     Creates a Google Calendar API service object and outputs a list of the next
@@ -64,14 +65,18 @@ def main():
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
 
-    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    print('Getting the upcoming 10 events')
+    if not time_min:
+        time_min = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+    # if not time_max:
+    #     # TODO: time_max の形式を揃える
+    #     time_max = time_max + 'Z'  # 'Z' indicates UTC time
 
     # ここで取ってくるイベントを指定
     eventsResult = service.events().list(
-        calendarId='primary',
-        timeMin=now,
-        maxResults=10,
+        calendarId=CALENDAR_ID,
+        # timeMin=time_min,
+        timeMax=time_max,
+        maxResults=20,
         singleEvents=True,
         orderBy='startTime',
         key=API_KEY,
