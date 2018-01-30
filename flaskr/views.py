@@ -5,18 +5,28 @@ from flaskr import calendars
 
 @app.route('/')
 def index():
-    calendars.main()
     return render_template('index.html')
 
 
-@app.route('/get_schedules', )
+@app.route('/get_schedules')
 def get_schedules():
     start_date = request.args.get('name')
     finish_date = request.args.get('name')
-    name = request.args.get('name')
-    name = request.args.get('name')
+
+    # 指定期間中のスケジュールを取得
     events = calendars.main()
     return jsonify(events)
+
+
+@app.route('/get_free_schedules')
+def get_free_schedules():
+    start_date = request.args.get('name')
+    finish_date = request.args.get('name')
+
+    # 指定期間中のスケジュールを取得
+    events = calendars.main()
+    # TODO: 取得したスケジュールの中からスケジュールが入っていない日程を取り出す
+    return jsonify
 
 
 @app.route('/add', methods=['POST'])

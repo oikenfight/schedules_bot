@@ -20,6 +20,7 @@ except ImportError:
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Schedule Bot'
+API_KEY = 'AIzaSyDjAg_ilafgHqwKiCP9NrI6d6P7GFoHdPs'
 
 
 def get_credentials():
@@ -66,8 +67,13 @@ def main():
 
     # ここで取ってくるイベントを指定
     eventsResult = service.events().list(
-        calendarId='primary', timeMin=now, maxResults=10, singleEvents=True,
-        orderBy='startTime').execute()
+        calendarId='primary',
+        timeMin=now,
+        maxResults=10,
+        singleEvents=True,
+        orderBy='startTime',
+        # key=API_KEY,
+    ).execute()
 
     events = eventsResult.get('items', [])
     if not events:
@@ -77,6 +83,15 @@ def main():
         print(start, event['summary'])
 
     return events
+
+
+def get_schedules(start_date, last_date):
+    """
+    期間中のスケジュール情報を取得する
+    :param start_date:
+    :param
+    :return:
+    """
 
 
 if __name__ == '__main__':
