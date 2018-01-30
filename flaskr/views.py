@@ -1,5 +1,6 @@
 from flask import request, redirect, url_for, render_template, flash, jsonify
 from flaskr import app
+from flaskr import config
 from flaskr import calendars
 
 

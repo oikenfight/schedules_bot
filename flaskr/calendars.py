@@ -6,8 +6,14 @@ from apiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
+from flaskr import config
 
 import datetime
+
+SCOPES = config.SCOPES
+CLIENT_SECRET_FILE = config.CLIENT_SECRET_FILE
+APPLICATION_NAME = config.APPLICATION_NAME
+API_KEY = config.API_KEY
 
 try:
     import argparse
@@ -17,10 +23,6 @@ except ImportError:
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/calendar-python-quickstart.json
-SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
-CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Schedule Bot'
-API_KEY = 'AIzaSyDjAg_ilafgHqwKiCP9NrI6d6P7GFoHdPs'
 
 
 def get_credentials():
@@ -72,7 +74,7 @@ def main():
         maxResults=10,
         singleEvents=True,
         orderBy='startTime',
-        # key=API_KEY,
+        key=API_KEY,
     ).execute()
 
     events = eventsResult.get('items', [])
