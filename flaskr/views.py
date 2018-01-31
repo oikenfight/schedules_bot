@@ -66,7 +66,7 @@ def get_free_schedules():
 
     # 検索対象の日付一覧を取得
     free_days_in_term = []
-    for i in range(0, int((date_max - date_min).days)):
+    for i in range(0, int((date_max - date_min).days) + 1):
         day = (date_min + datetime.timedelta(days=i)).strftime('%Y-%m-%d')
         free_days_in_term += [day]
 
