@@ -19,8 +19,8 @@ def get_schedules():
     :return json:
     """
     # パラメータを取得
-    time_min = request.args.get('time_min')
-    time_max = request.args.get('time_max')
+    time_min = request.args.get('time_min').replace('/', '-')
+    time_max = request.args.get('time_max').replace('/', '-')
 
     # UTC タイムゾーンに変換
     if time_min and time_max:
@@ -36,7 +36,7 @@ def get_schedules():
 
     # 指定期間中のスケジュールを取得
     events = calendars.main(time_min, time_max)
-    return jsonify({"events": events})
+    return jsonify({"events": events[0]})
 
 
 @app.route('/get_free_schedules')
@@ -46,8 +46,8 @@ def get_free_schedules():
     :return json:
     """
     # パラメータから日付を取得
-    date_min = request.args.get('time_min')
-    date_max = request.args.get('time_max')
+    date_min = request.args.get('time_min').replace('/', '-')
+    date_max = request.args.get('time_max').replace('/', '-')
 
     between_days = 0
 
