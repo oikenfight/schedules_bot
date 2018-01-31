@@ -26,8 +26,8 @@
     * Google カレンダー API のセットアップについては以下を参照
     * https://dev.classmethod.jp/cloud/google-calendar-api-get-start/
     * https://developers.google.com/google-apps/calendar/quickstart/python?hl=ja
-    * 同じディレクトリに quickstart.py と client_secret.json を置いてコマンドを実行しておく必要がありそう
-        *
+    * 同じディレクトリに quickstart.py と client_secret.json を置いてコマンドを実行して認証を行う必要がありそう.
+       
     ```
-    $ python quickstart.py
+    $ python quickstart.py --noauth_local_webserver
     ```
