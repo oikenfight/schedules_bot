@@ -36,7 +36,8 @@ def get_schedules():
 
     # 指定期間中のスケジュールを取得
     events = calendars.main(time_min, time_max)
-    return jsonify({"events": events[0]})
+    print({"events": events})
+    return jsonify({"events": events})
 
 
 @app.route('/get_free_schedules')
@@ -75,7 +76,7 @@ def get_free_schedules():
         if event['start']['date'] in free_days_in_term:
             free_days_in_term.remove(event['start']['date'])
 
-    print(free_days_in_term)
+    print({"free_days": free_days_in_term})
     return jsonify({"free_days": free_days_in_term})
 
 
