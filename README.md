@@ -23,10 +23,11 @@
 * 環境
     * Amazon Linux + python3 + flask
 * Google Calendar API
-    * Google カレンダーのセットアップについては以下を参照
+    * Google カレンダー API のセットアップについては以下を参照
     * https://dev.classmethod.jp/cloud/google-calendar-api-get-start/
     * https://developers.google.com/google-apps/calendar/quickstart/python?hl=ja
-    * 同じディレクトリに quickstart.py と client_secret.json を置いてコマンドを実行すればいい
+    * 同じディレクトリに quickstart.py と client_secret.json を置いてコマンドを実行しておく必要がありそう
+        *
     ```
     $ python quickstart.py
     ```
