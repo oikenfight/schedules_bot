@@ -65,10 +65,16 @@ def main(time_min, time_max):
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('calendar', 'v3', http=http)
 
+    if not time_min:
+        time_min = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+    # if not time_max:
+    #     # TODO: time_max の形式を揃える
+    #     time_max = time_max + 'Z'  # 'Z' indicates UTC time
+
     # ここで取ってくるイベントを指定
     eventsResult = service.events().list(
         calendarId=CALENDAR_ID,
-        timeMin=time_min,
+        # timeMin=time_min,
         timeMax=time_max,
         maxResults=20,
         singleEvents=True,
@@ -84,6 +90,15 @@ def main(time_min, time_max):
     #     print(start, event['summary'])
 
     return events
+
+
+def get_schedules(start_date, last_date):
+    """
+    期間中のスケジュール情報を取得する
+    :param start_date:
+    :param
+    :return:
+    """
 
 
 if __name__ == '__main__':
